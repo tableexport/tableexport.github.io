@@ -1,0 +1,1 @@
+# 纯静态站，禁用 GitHub Pages 的 Jekyll 构建（Jekyll 会跳过 _astro/ 等下划线目录）
