@@ -1,7 +1,66 @@
 <!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><script>
       document.documentElement.classList.add("js");
-    </script><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/png" href="/images/icon-128.png"><title>离线表格导出插件 - 零联网、零数据收集的隐私安全选择 | 表格导出助手</title><meta name="description" content="Table Export 所有表格识别与导出都在浏览器本地完成，扩展不发起任何网络请求，不收集、不传输、不存储任何用户数据，连 Pro 授权验证都完全离线。"><link rel="canonical" href="https://tableexport.github.io/features/offline-privacy/"><link rel="alternate" hreflang="zh-CN" href="https://tableexport.github.io/features/offline-privacy/"><link rel="alternate" hreflang="en" href="https://tableexport.github.io/en/features/"><link rel="alternate" hreflang="x-default" href="https://tableexport.github.io/features/offline-privacy/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><meta property="og:type" content="website"><meta property="og:site_name" content="Table Export 表格导出助手"><meta property="og:title" content="离线表格导出插件 - 零联网、零数据收集的隐私安全选择 | 表格导出助手"><meta property="og:description" content="Table Export 所有表格识别与导出都在浏览器本地完成，扩展不发起任何网络请求，不收集、不传输、不存储任何用户数据，连 Pro 授权验证都完全离线。"><meta property="og:url" content="https://tableexport.github.io/features/offline-privacy/"><meta property="og:image" content="https://tableexport.github.io/images/screenshot-1-batch-export.png"><meta name="twitter:card" content="summary_large_image"><script defer src="https://cloud.umami.is/script.js" data-website-id="197defb8-296a-44d5-b7a4-89f6dcfeebff" data-auto-track="true" data-domains="tableexport.github.io"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"/"},{"@type":"ListItem","position":2,"name":"离线与隐私","item":"/features/offline-privacy/"}]}</script><link rel="stylesheet" href="/_astro/download.D5RvpE7m.css"></head> <body> <header class="site-nav"> <div class="container"> <a class="brand" href="/"> <img class="logo" src="/images/icon-128.png" alt="" width="26" height="26">
-Table&nbsp;<span class="mark">Export</span> </a> <nav class="links"> <a href="/features/">功能</a> <a href="/download/">下载</a> <a href="/help/faq/">FAQ</a> <a class="lang" href="/en/features/">English</a> <a class="nav-cta" href="/pricing/"> ¥9.9 升级 Pro </a> </nav> </div> </header> <main>  <div class="prose"> <nav class="breadcrumb"><a href="/">首页</a> / 离线与隐私</nav> <span class="page-badge">核心功能 · Feature</span> <h1>完全离线：数据不出你的浏览器</h1> <p class="lead">
+    </script><script>
+      (function () {
+        // 用户手动切换过语言，则不自动跳转
+        try {
+          if (localStorage.getItem("lang-pref")) return;
+        } catch (e) {}
+
+        // 按浏览器主语言跳转：中文 → zh，其余一律兜底英文
+        var primary = navigator.language || (navigator.languages && navigator.languages[0]) || "en";
+        var isZh = String(primary).toLowerCase().slice(0, 2) === "zh";
+        var target = isZh ? "zh" : "en";
+
+        // 当前页面语言
+        var path = location.pathname;
+        var norm = path.length > 1 ? path.replace(/\/+$/, "") : path;
+        var cur = norm === "/en" || norm.indexOf("/en/") === 0 ? "en" : "zh";
+        if (cur === target) return;
+
+        // 已知页面路径映射，缺省回对应语言首页
+        var map = {
+          "/": "/en/",
+          "/download": "/en/download",
+          "/features": "/en/features",
+          "/features/export-formats": "/en/features/export-formats",
+          "/features/pseudo-table": "/en/features/pseudo-table",
+          "/features/batch-pagination": "/en/features/batch-pagination",
+          "/features/merged-cells": "/en/features/merged-cells",
+          "/features/offline-privacy": "/en/features/offline-privacy",
+          "/help/faq": "/en/faq",
+          "/help/changelog": "/en/changelog",
+          "/pricing": "/en/pricing",
+          "/payment-success": "/en/payment-success",
+          "/privacy": "/en/privacy",
+          "/refund": "/en/refund",
+          "/en": "/",
+          "/en/download": "/download",
+          "/en/features": "/features",
+          "/en/features/export-formats": "/features/export-formats",
+          "/en/features/pseudo-table": "/features/pseudo-table",
+          "/en/features/batch-pagination": "/features/batch-pagination",
+          "/en/features/merged-cells": "/features/merged-cells",
+          "/en/features/offline-privacy": "/features/offline-privacy",
+          "/en/faq": "/help/faq",
+          "/en/changelog": "/help/changelog",
+          "/en/pricing": "/pricing",
+          "/en/payment-success": "/payment-success",
+          "/en/privacy": "/privacy",
+          "/en/refund": "/refund",
+        };
+        var dest = map[norm] || (target === "en" ? "/en/" : "/");
+        if (dest !== norm) location.replace(dest);
+      })();
+      // 记录用户手动切换语言，避免之后再次被自动跳转拉回
+      document.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("a.lang") : null;
+        if (a) {
+          try { localStorage.setItem("lang-pref", "1"); } catch (err) {}
+        }
+      });
+    </script><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/png" href="/images/icon-128.png"><title>离线表格导出插件 - 零联网、零数据收集的隐私安全选择 | 表格导出助手</title><meta name="description" content="Table Export 所有表格识别与导出都在浏览器本地完成，扩展不发起任何网络请求，不收集、不传输、不存储任何用户数据，连 Pro 授权验证都完全离线。"><link rel="canonical" href="https://tableexport.github.io/features/offline-privacy/"><link rel="alternate" hreflang="zh-CN" href="https://tableexport.github.io/features/offline-privacy/"><link rel="alternate" hreflang="en" href="https://tableexport.github.io/en/features/offline-privacy/"><link rel="alternate" hreflang="x-default" href="https://tableexport.github.io/features/offline-privacy/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><meta property="og:type" content="website"><meta property="og:site_name" content="Table Export 表格导出助手"><meta property="og:title" content="离线表格导出插件 - 零联网、零数据收集的隐私安全选择 | 表格导出助手"><meta property="og:description" content="Table Export 所有表格识别与导出都在浏览器本地完成，扩展不发起任何网络请求，不收集、不传输、不存储任何用户数据，连 Pro 授权验证都完全离线。"><meta property="og:url" content="https://tableexport.github.io/features/offline-privacy/"><meta property="og:image" content="https://tableexport.github.io/images/screenshot-1-batch-export.png"><meta name="twitter:card" content="summary_large_image"><script defer src="https://cloud.umami.is/script.js" data-website-id="197defb8-296a-44d5-b7a4-89f6dcfeebff" data-auto-track="true" data-domains="tableexport.github.io"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"/"},{"@type":"ListItem","position":2,"name":"离线与隐私","item":"/features/offline-privacy/"}]}</script><link rel="stylesheet" href="/_astro/download.D5RvpE7m.css"></head> <body> <header class="site-nav"> <div class="container"> <a class="brand" href="/"> <img class="logo" src="/images/icon-128.png" alt="" width="26" height="26">
+Table&nbsp;<span class="mark">Export</span> </a> <nav class="links"> <a href="/features/">功能</a> <a href="/download/">下载</a> <a href="/help/faq/">FAQ</a> <a class="lang" href="/en/features/offline-privacy/">English</a> <a class="nav-cta" href="/pricing/"> ¥9.9 升级 Pro </a> </nav> </div> </header> <main>  <div class="prose"> <nav class="breadcrumb"><a href="/">首页</a> / 离线与隐私</nav> <span class="page-badge">核心功能 · Feature</span> <h1>完全离线：数据不出你的浏览器</h1> <p class="lead">
 很多采集工具会把页面数据上传到云端处理。Table Export 相反——扩展本身不请求任何网络权限，想联网也联不了。
 </p> <h2>零数据收集，可验证</h2> <ul> <li>所有表格识别、解析、导出都在浏览器本地完成；</li> <li>扩展清单中没有任何网络域名权限；</li> <li>不收集、不传输、不存储任何用户数据，无埋点无统计；</li> <li>打开浏览器开发者工具的 Network 面板即可验证：使用全程零请求。</li> </ul> <h2>连付费验证都不联网</h2> <p>
 Pro 授权码采用离线签名验证，激活时不连接任何服务器；授权码换电脑可重复激活，无次数限制。你在内网、涉密环境也能放心使用。

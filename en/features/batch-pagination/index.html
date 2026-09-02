@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><script>
+      document.documentElement.classList.add("js");
+    </script><script>
+      (function () {
+        // 用户手动切换过语言，则不自动跳转
+        try {
+          if (localStorage.getItem("lang-pref")) return;
+        } catch (e) {}
+
+        // 按浏览器主语言跳转：中文 → zh，其余一律兜底英文
+        var primary = navigator.language || (navigator.languages && navigator.languages[0]) || "en";
+        var isZh = String(primary).toLowerCase().slice(0, 2) === "zh";
+        var target = isZh ? "zh" : "en";
+
+        // 当前页面语言
+        var path = location.pathname;
+        var norm = path.length > 1 ? path.replace(/\/+$/, "") : path;
+        var cur = norm === "/en" || norm.indexOf("/en/") === 0 ? "en" : "zh";
+        if (cur === target) return;
+
+        // 已知页面路径映射，缺省回对应语言首页
+        var map = {
+          "/": "/en/",
+          "/download": "/en/download",
+          "/features": "/en/features",
+          "/features/export-formats": "/en/features/export-formats",
+          "/features/pseudo-table": "/en/features/pseudo-table",
+          "/features/batch-pagination": "/en/features/batch-pagination",
+          "/features/merged-cells": "/en/features/merged-cells",
+          "/features/offline-privacy": "/en/features/offline-privacy",
+          "/help/faq": "/en/faq",
+          "/help/changelog": "/en/changelog",
+          "/pricing": "/en/pricing",
+          "/payment-success": "/en/payment-success",
+          "/privacy": "/en/privacy",
+          "/refund": "/en/refund",
+          "/en": "/",
+          "/en/download": "/download",
+          "/en/features": "/features",
+          "/en/features/export-formats": "/features/export-formats",
+          "/en/features/pseudo-table": "/features/pseudo-table",
+          "/en/features/batch-pagination": "/features/batch-pagination",
+          "/en/features/merged-cells": "/features/merged-cells",
+          "/en/features/offline-privacy": "/features/offline-privacy",
+          "/en/faq": "/help/faq",
+          "/en/changelog": "/help/changelog",
+          "/en/pricing": "/pricing",
+          "/en/payment-success": "/payment-success",
+          "/en/privacy": "/privacy",
+          "/en/refund": "/refund",
+        };
+        var dest = map[norm] || (target === "en" ? "/en/" : "/");
+        if (dest !== norm) location.replace(dest);
+      })();
+      // 记录用户手动切换语言，避免之后再次被自动跳转拉回
+      document.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("a.lang") : null;
+        if (a) {
+          try { localStorage.setItem("lang-pref", "1"); } catch (err) {}
+        }
+      });
+    </script><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/png" href="/images/icon-128.png"><title>Collect Paged Web Data - Auto-click Next Page &amp; Batch Export Tables | Table Export</title><meta name="description" content="Auto-click 'next page' to continuously collect multi-page table data, including full-page-navigation pagination. No scraper needed. Free: 500 rows/day; Pro one-time unlock unlimited. Table Export."><link rel="canonical" href="https://tableexport.github.io/en/features/batch-pagination/"><link rel="alternate" hreflang="zh-CN" href="https://tableexport.github.io/features/batch-pagination/"><link rel="alternate" hreflang="en" href="https://tableexport.github.io/en/features/batch-pagination/"><link rel="alternate" hreflang="x-default" href="https://tableexport.github.io/features/batch-pagination/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><meta property="og:type" content="website"><meta property="og:site_name" content="Table Export 表格导出助手"><meta property="og:title" content="Collect Paged Web Data - Auto-click Next Page &#38; Batch Export Tables | Table Export"><meta property="og:description" content="Auto-click 'next page' to continuously collect multi-page table data, including full-page-navigation pagination. No scraper needed. Free: 500 rows/day; Pro one-time unlock unlimited. Table Export."><meta property="og:url" content="https://tableexport.github.io/en/features/batch-pagination/"><meta property="og:image" content="https://tableexport.github.io/images/screenshot-1-batch-export-en.png"><meta name="twitter:card" content="summary_large_image"><script defer src="https://cloud.umami.is/script.js" data-website-id="197defb8-296a-44d5-b7a4-89f6dcfeebff" data-auto-track="true" data-domains="tableexport.github.io"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"/en/"},{"@type":"ListItem","position":2,"name":"Batch paged collection","item":"/en/features/batch-pagination/"}]}</script><link rel="stylesheet" href="/_astro/download.D5RvpE7m.css"></head> <body> <header class="site-nav"> <div class="container"> <a class="brand" href="/en/"> <img class="logo" src="/images/icon-128.png" alt="" width="26" height="26">
+Table&nbsp;<span class="mark">Export</span> </a> <nav class="links"> <a href="/en/features/">Features</a> <a href="/en/download/">Download</a> <a href="/en/faq/">FAQ</a> <a class="lang" href="/features/batch-pagination/">中文</a> <a class="nav-cta" href="/en/pricing/"> Go Pro · $9.99 </a> </nav> </div> </header> <main>  <div class="prose"> <nav class="breadcrumb"><a href="/en/">Home</a> / Batch paged collection</nav> <span class="page-badge">Core feature · Feature</span> <h1>Batch paged collection: paginate to the end, export the whole site at once</h1> <p class="lead">
+Data spread across dozens of pages? Pick the table, point to the "next page" button, and Table Export flips pages automatically, collecting each one and merging everything into a single file.
+</p> <h2>Both pagination styles supported</h2> <ul> <li><strong>In-page pagination</strong>: the page doesn't reload when you click — the next-page button is detected automatically and collected continuously.</li> <li><strong>Full-page-navigation pagination</strong>: each page is a new URL — supported via cross-navigation resume, continuing collection after jumping to the next page without supervision.</li> </ul> <p>
+You can also point to the pagination control manually for sites with unusual structure. Stop anytime; collected data is never lost.
+</p> <p>
+Collection is self-guarding: rows that render repeatedly across pages are deduplicated automatically, and reaching the last page (button still present but no new data) is detected so it stops on its own.
+</p> <img src="/images/screenshot-1-batch-export-en.png" alt="Batch paged collection progress and result preview" width="1280" height="800" style="border-radius:12px;border:1px solid #eee"> <h2>Free vs Pro collection limits</h2> <table class="cmp"> <tr><th>Capability</th><th>Free</th><th>Pro</th></tr> <tr><td>Batch paged collection</td><td>500 rows/day *</td><td class="yes">Unlimited</td></tr> <tr><td>Rows per batch run</td><td>200 rows</td><td class="yes">50,000 rows</td></tr> </table> <p style="color:#666;font-size:14px">
+* Only rows added from page 2 onward count; the first page of each batch equals a single-page export and is not counted.
+</p> <p>
+Collecting a small table occasionally? Free is plenty. For scaled collection, <a href="/en/pricing/">upgrade to Pro for $9.99 one-time</a> — no subscription, no auto-renewal.
+</p> <h2>Related pages</h2> <p> <a href="/en/features/pseudo-table/">Can lists that aren't table tags be collected?</a> ·
+<a href="/en/faq/">Paged collection FAQ</a> ·
+<a href="/en/download/">Download</a> </p> </div>  </main> <footer class="site-footer"> <div class="container"> <div class="footer-top"> <a class="brand" href="/en/"> <img class="logo" src="/images/icon-128.png" alt="" width="26" height="26">
+Table&nbsp;<span class="mark">Export</span> </a> <p class="tagline"> Detect and export web tables in one click. Fully offline, zero data collected. </p> </div> <div class="cols"> <div> <h4>Features</h4> <ul> <li><a href="/en/features/export-formats/">Export CSV / Excel / JSON</a></li> <li><a href="/en/features/pseudo-table/">Pseudo-table detection</a></li> <li><a href="/en/features/batch-pagination/">Batch paged collection</a></li> <li><a href="/en/features/merged-cells/">Merged cells flattening</a></li> <li><a href="/en/features/offline-privacy/">Offline &amp; private</a></li> </ul> </div> <div> <h4>Product</h4> <ul> <li><a href="/en/pricing/">Pricing &amp; Buy</a></li> <li><a href="/en/download/">Download</a></li> <li><a href="/en/changelog/">Changelog</a></li> </ul> </div> <div> <h4>Support</h4> <ul> <li><a href="/en/faq/">FAQ</a></li> <li><a href="/en/refund/">Refund Policy</a></li> <li><a href="/en/privacy/">Privacy Policy</a></li> <li><a href="mailto:lslwork666@163.com">Contact</a></li> </ul> </div> </div> <div class="copy"> <span>© 2026 Table Export · Table Export Helper</span> <a href="mailto:lslwork666@163.com">lslwork666@163.com</a> </div> </div> </footer> <script type="module">const s=Array.from(document.querySelectorAll("[data-reveal]"));if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)s.forEach(r=>r.classList.add("in-view"));else{const r=new Map;s.forEach(t=>{const e=t.parentElement??document.body;r.has(e)||r.set(e,[]),r.get(e).push(t)}),r.forEach(t=>t.forEach((e,a)=>{e.style.transitionDelay=`${Math.min(a*70,350)}ms`}));const o=new IntersectionObserver(t=>{for(const e of t)e.isIntersecting&&(e.target.classList.add("in-view"),o.unobserve(e.target))},{threshold:.12});s.forEach(t=>o.observe(t))}</script> </body> </html>

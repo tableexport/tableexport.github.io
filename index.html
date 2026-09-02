@@ -1,5 +1,64 @@
 <!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><script>
       document.documentElement.classList.add("js");
+    </script><script>
+      (function () {
+        // 用户手动切换过语言，则不自动跳转
+        try {
+          if (localStorage.getItem("lang-pref")) return;
+        } catch (e) {}
+
+        // 按浏览器主语言跳转：中文 → zh，其余一律兜底英文
+        var primary = navigator.language || (navigator.languages && navigator.languages[0]) || "en";
+        var isZh = String(primary).toLowerCase().slice(0, 2) === "zh";
+        var target = isZh ? "zh" : "en";
+
+        // 当前页面语言
+        var path = location.pathname;
+        var norm = path.length > 1 ? path.replace(/\/+$/, "") : path;
+        var cur = norm === "/en" || norm.indexOf("/en/") === 0 ? "en" : "zh";
+        if (cur === target) return;
+
+        // 已知页面路径映射，缺省回对应语言首页
+        var map = {
+          "/": "/en/",
+          "/download": "/en/download",
+          "/features": "/en/features",
+          "/features/export-formats": "/en/features/export-formats",
+          "/features/pseudo-table": "/en/features/pseudo-table",
+          "/features/batch-pagination": "/en/features/batch-pagination",
+          "/features/merged-cells": "/en/features/merged-cells",
+          "/features/offline-privacy": "/en/features/offline-privacy",
+          "/help/faq": "/en/faq",
+          "/help/changelog": "/en/changelog",
+          "/pricing": "/en/pricing",
+          "/payment-success": "/en/payment-success",
+          "/privacy": "/en/privacy",
+          "/refund": "/en/refund",
+          "/en": "/",
+          "/en/download": "/download",
+          "/en/features": "/features",
+          "/en/features/export-formats": "/features/export-formats",
+          "/en/features/pseudo-table": "/features/pseudo-table",
+          "/en/features/batch-pagination": "/features/batch-pagination",
+          "/en/features/merged-cells": "/features/merged-cells",
+          "/en/features/offline-privacy": "/features/offline-privacy",
+          "/en/faq": "/help/faq",
+          "/en/changelog": "/help/changelog",
+          "/en/pricing": "/pricing",
+          "/en/payment-success": "/payment-success",
+          "/en/privacy": "/privacy",
+          "/en/refund": "/refund",
+        };
+        var dest = map[norm] || (target === "en" ? "/en/" : "/");
+        if (dest !== norm) location.replace(dest);
+      })();
+      // 记录用户手动切换语言，避免之后再次被自动跳转拉回
+      document.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("a.lang") : null;
+        if (a) {
+          try { localStorage.setItem("lang-pref", "1"); } catch (err) {}
+        }
+      });
     </script><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/png" href="/images/icon-128.png"><title>表格导出助手 - 网页表格一键导出Excel/CSV/JSON的浏览器插件</title><meta name="description" content="Table Export 表格导出助手：识别任意网页上的表格与列表块，一键导出为 CSV、Excel、Markdown、JSON。支持 div 伪表格、批量翻页采集、合并单元格拆平，完全离线零联网，不收集任何数据。"><link rel="canonical" href="https://tableexport.github.io/"><link rel="alternate" hreflang="zh-CN" href="https://tableexport.github.io/"><link rel="alternate" hreflang="en" href="https://tableexport.github.io/en/"><link rel="alternate" hreflang="x-default" href="https://tableexport.github.io/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><meta property="og:type" content="website"><meta property="og:site_name" content="Table Export 表格导出助手"><meta property="og:title" content="表格导出助手 - 网页表格一键导出Excel/CSV/JSON的浏览器插件"><meta property="og:description" content="Table Export 表格导出助手：识别任意网页上的表格与列表块，一键导出为 CSV、Excel、Markdown、JSON。支持 div 伪表格、批量翻页采集、合并单元格拆平，完全离线零联网，不收集任何数据。"><meta property="og:url" content="https://tableexport.github.io/"><meta property="og:image" content="https://tableexport.github.io/images/screenshot-1-batch-export.png"><meta name="twitter:card" content="summary_large_image"><script defer src="https://cloud.umami.is/script.js" data-website-id="197defb8-296a-44d5-b7a4-89f6dcfeebff" data-auto-track="true" data-domains="tableexport.github.io"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Table Export 表格导出助手","applicationCategory":"ProductivityApplication","operatingSystem":"Chrome, Microsoft Edge","description":"Table Export 表格导出助手：识别任意网页上的表格与列表块，一键导出为 CSV、Excel、Markdown、JSON。支持 div 伪表格、批量翻页采集、合并单元格拆平，完全离线零联网，不收集任何数据。","image":"/images/screenshot-1-batch-export.png","offers":{"@type":"Offer","price":"9.90","priceCurrency":"CNY","description":"Pro 一次买断，永久使用"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"怎么把网页表格导出到 Excel？","acceptedAnswer":{"@type":"Answer","text":"安装扩展后打开任意带表格的网页，点击工具栏的 Table Export 图标，即可一键导出为 Excel（.xlsx）、CSV、Markdown 或 JSON。"}},{"@type":"Question","name":"不是 table 标签的列表能导出吗？","acceptedAnswer":{"@type":"Answer","text":"可以。div 布局的重复结构块（商品列表、榜单、后台数据等）同样会被识别为伪表格并导出。"}},{"@type":"Question","name":"需要联网吗？数据会不会上传？","acceptedAnswer":{"@type":"Answer","text":"不需要。所有识别与导出都在浏览器本地完成，扩展零网络请求，Pro 授权也是离线签名验证，不收集任何数据。"}},{"@type":"Question","name":"免费版有哪些限制？","acceptedAnswer":{"@type":"Answer","text":"单页表格导出永久免费、不计量；批量翻页采集每天 500 行、单次任务上限 200 行。升级 Pro（¥9.9 一次买断）解锁不限量翻页与单次 50000 行。"}},{"@type":"Question","name":"导出的 CSV 用 Excel 打开乱码怎么办？","acceptedAnswer":{"@type":"Answer","text":"导出的 CSV 已带 UTF-8 BOM，双击即可在 Excel / WPS 正常打开；若通过 Excel 数据导入向导打开，请手动选择 UTF-8 编码。"}}]}</script><link rel="stylesheet" href="/_astro/download.D5RvpE7m.css"></head> <body> <header class="site-nav"> <div class="container"> <a class="brand" href="/"> <img class="logo" src="/images/icon-128.png" alt="" width="26" height="26">
 Table&nbsp;<span class="mark">Export</span> </a> <nav class="links"> <a href="/features/">功能</a> <a href="/download/">下载</a> <a href="/help/faq/">FAQ</a> <a class="lang" href="/en/">English</a> <a class="nav-cta" href="/pricing/"> ¥9.9 升级 Pro </a> </nav> </div> </header> <main>  <section class="hero"> <div class="container"> <span class="eyebrow"><span class="dot"></span>完全离线运行 · 零数据收集</span> <h1>网页表格，<em>一键导出</em><br>Excel / CSV / JSON</h1> <p class="lead">
 识别任意网页上的表格与列表块，一键导出干净规整的数据文件。支持批量翻页采集与合并单元格拆平，无需写一行爬虫代码。

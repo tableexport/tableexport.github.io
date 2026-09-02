@@ -1,7 +1,66 @@
 <!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><script>
       document.documentElement.classList.add("js");
-    </script><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/png" href="/images/icon-128.png"><title>网页表格导出Excel/CSV/Markdown/JSON - 多格式一键导出 | 表格导出助手</title><meta name="description" content="把网页表格一键导出为 CSV（UTF-8 带 BOM，Excel/WPS 无乱码）、Excel .xlsx、Markdown 或 JSON，还支持跨表合并导出。Table Export 表格导出助手，完全离线。"><link rel="canonical" href="https://tableexport.github.io/features/export-formats/"><link rel="alternate" hreflang="zh-CN" href="https://tableexport.github.io/features/export-formats/"><link rel="alternate" hreflang="en" href="https://tableexport.github.io/en/features/"><link rel="alternate" hreflang="x-default" href="https://tableexport.github.io/features/export-formats/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><meta property="og:type" content="website"><meta property="og:site_name" content="Table Export 表格导出助手"><meta property="og:title" content="网页表格导出Excel/CSV/Markdown/JSON - 多格式一键导出 | 表格导出助手"><meta property="og:description" content="把网页表格一键导出为 CSV（UTF-8 带 BOM，Excel/WPS 无乱码）、Excel .xlsx、Markdown 或 JSON，还支持跨表合并导出。Table Export 表格导出助手，完全离线。"><meta property="og:url" content="https://tableexport.github.io/features/export-formats/"><meta property="og:image" content="https://tableexport.github.io/images/screenshot-1-batch-export.png"><meta name="twitter:card" content="summary_large_image"><script defer src="https://cloud.umami.is/script.js" data-website-id="197defb8-296a-44d5-b7a4-89f6dcfeebff" data-auto-track="true" data-domains="tableexport.github.io"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"/"},{"@type":"ListItem","position":2,"name":"多格式导出","item":"/features/export-formats/"}]}</script><link rel="stylesheet" href="/_astro/download.D5RvpE7m.css"></head> <body> <header class="site-nav"> <div class="container"> <a class="brand" href="/"> <img class="logo" src="/images/icon-128.png" alt="" width="26" height="26">
-Table&nbsp;<span class="mark">Export</span> </a> <nav class="links"> <a href="/features/">功能</a> <a href="/download/">下载</a> <a href="/help/faq/">FAQ</a> <a class="lang" href="/en/features/">English</a> <a class="nav-cta" href="/pricing/"> ¥9.9 升级 Pro </a> </nav> </div> </header> <main>  <div class="prose"> <nav class="breadcrumb"><a href="/">首页</a> / 多格式导出</nav> <span class="page-badge">核心功能 · Feature</span> <h1>网页表格一键导出 Excel / CSV / Markdown / JSON</h1> <p class="lead">选中的表格或列表块，一键变成干净的二维数据文件——不用复制粘贴，不用写脚本。</p> <h2>四种格式，覆盖常见场景</h2> <ul> <li><strong>CSV</strong>：UTF-8 带 BOM 编码，用 Excel、WPS 直接打开不会出现中文乱码，适合进数据库或做数据清洗。</li> <li><strong>Excel（.xlsx）</strong>：基于 SheetJS 生成真正的 Excel 文件，保留表格结构，交付汇报直接用。</li> <li><strong>Markdown</strong>：采集资料写文档、做笔记时直接贴入，无需再排版。</li> <li><strong>JSON</strong>：结构化数据直接交给程序处理。</li> </ul> <h2>跨表合并（Pro）：多个表格合成一份</h2> <p>
+    </script><script>
+      (function () {
+        // 用户手动切换过语言，则不自动跳转
+        try {
+          if (localStorage.getItem("lang-pref")) return;
+        } catch (e) {}
+
+        // 按浏览器主语言跳转：中文 → zh，其余一律兜底英文
+        var primary = navigator.language || (navigator.languages && navigator.languages[0]) || "en";
+        var isZh = String(primary).toLowerCase().slice(0, 2) === "zh";
+        var target = isZh ? "zh" : "en";
+
+        // 当前页面语言
+        var path = location.pathname;
+        var norm = path.length > 1 ? path.replace(/\/+$/, "") : path;
+        var cur = norm === "/en" || norm.indexOf("/en/") === 0 ? "en" : "zh";
+        if (cur === target) return;
+
+        // 已知页面路径映射，缺省回对应语言首页
+        var map = {
+          "/": "/en/",
+          "/download": "/en/download",
+          "/features": "/en/features",
+          "/features/export-formats": "/en/features/export-formats",
+          "/features/pseudo-table": "/en/features/pseudo-table",
+          "/features/batch-pagination": "/en/features/batch-pagination",
+          "/features/merged-cells": "/en/features/merged-cells",
+          "/features/offline-privacy": "/en/features/offline-privacy",
+          "/help/faq": "/en/faq",
+          "/help/changelog": "/en/changelog",
+          "/pricing": "/en/pricing",
+          "/payment-success": "/en/payment-success",
+          "/privacy": "/en/privacy",
+          "/refund": "/en/refund",
+          "/en": "/",
+          "/en/download": "/download",
+          "/en/features": "/features",
+          "/en/features/export-formats": "/features/export-formats",
+          "/en/features/pseudo-table": "/features/pseudo-table",
+          "/en/features/batch-pagination": "/features/batch-pagination",
+          "/en/features/merged-cells": "/features/merged-cells",
+          "/en/features/offline-privacy": "/features/offline-privacy",
+          "/en/faq": "/help/faq",
+          "/en/changelog": "/help/changelog",
+          "/en/pricing": "/pricing",
+          "/en/payment-success": "/payment-success",
+          "/en/privacy": "/privacy",
+          "/en/refund": "/refund",
+        };
+        var dest = map[norm] || (target === "en" ? "/en/" : "/");
+        if (dest !== norm) location.replace(dest);
+      })();
+      // 记录用户手动切换语言，避免之后再次被自动跳转拉回
+      document.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("a.lang") : null;
+        if (a) {
+          try { localStorage.setItem("lang-pref", "1"); } catch (err) {}
+        }
+      });
+    </script><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/png" href="/images/icon-128.png"><title>网页表格导出Excel/CSV/Markdown/JSON - 多格式一键导出 | 表格导出助手</title><meta name="description" content="把网页表格一键导出为 CSV（UTF-8 带 BOM，Excel/WPS 无乱码）、Excel .xlsx、Markdown 或 JSON，还支持跨表合并导出。Table Export 表格导出助手，完全离线。"><link rel="canonical" href="https://tableexport.github.io/features/export-formats/"><link rel="alternate" hreflang="zh-CN" href="https://tableexport.github.io/features/export-formats/"><link rel="alternate" hreflang="en" href="https://tableexport.github.io/en/features/export-formats/"><link rel="alternate" hreflang="x-default" href="https://tableexport.github.io/features/export-formats/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><meta property="og:type" content="website"><meta property="og:site_name" content="Table Export 表格导出助手"><meta property="og:title" content="网页表格导出Excel/CSV/Markdown/JSON - 多格式一键导出 | 表格导出助手"><meta property="og:description" content="把网页表格一键导出为 CSV（UTF-8 带 BOM，Excel/WPS 无乱码）、Excel .xlsx、Markdown 或 JSON，还支持跨表合并导出。Table Export 表格导出助手，完全离线。"><meta property="og:url" content="https://tableexport.github.io/features/export-formats/"><meta property="og:image" content="https://tableexport.github.io/images/screenshot-1-batch-export.png"><meta name="twitter:card" content="summary_large_image"><script defer src="https://cloud.umami.is/script.js" data-website-id="197defb8-296a-44d5-b7a4-89f6dcfeebff" data-auto-track="true" data-domains="tableexport.github.io"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"/"},{"@type":"ListItem","position":2,"name":"多格式导出","item":"/features/export-formats/"}]}</script><link rel="stylesheet" href="/_astro/download.D5RvpE7m.css"></head> <body> <header class="site-nav"> <div class="container"> <a class="brand" href="/"> <img class="logo" src="/images/icon-128.png" alt="" width="26" height="26">
+Table&nbsp;<span class="mark">Export</span> </a> <nav class="links"> <a href="/features/">功能</a> <a href="/download/">下载</a> <a href="/help/faq/">FAQ</a> <a class="lang" href="/en/features/export-formats/">English</a> <a class="nav-cta" href="/pricing/"> ¥9.9 升级 Pro </a> </nav> </div> </header> <main>  <div class="prose"> <nav class="breadcrumb"><a href="/">首页</a> / 多格式导出</nav> <span class="page-badge">核心功能 · Feature</span> <h1>网页表格一键导出 Excel / CSV / Markdown / JSON</h1> <p class="lead">选中的表格或列表块，一键变成干净的二维数据文件——不用复制粘贴，不用写脚本。</p> <h2>四种格式，覆盖常见场景</h2> <ul> <li><strong>CSV</strong>：UTF-8 带 BOM 编码，用 Excel、WPS 直接打开不会出现中文乱码，适合进数据库或做数据清洗。</li> <li><strong>Excel（.xlsx）</strong>：基于 SheetJS 生成真正的 Excel 文件，保留表格结构，交付汇报直接用。</li> <li><strong>Markdown</strong>：采集资料写文档、做笔记时直接贴入，无需再排版。</li> <li><strong>JSON</strong>：结构化数据直接交给程序处理。</li> </ul> <h2>跨表合并（Pro）：多个表格合成一份</h2> <p>
 同一页面上分散的多个表格，勾选后支持纵向拼接或横向对齐合并成一张表导出——分块渲染的报表、主表加明细表，都不用再手动拼。这是
       Pro 功能，<a href="/pricing/">升级后</a>在弹窗里开启合并模式即可。
 </p> <img src="/images/screenshot-3-floating-toolbar.png" alt="网页内表格浮动工具栏，一键选择导出格式" width="1280" height="800" style="border-radius:12px;border:1px solid #eee"> <h2>导出前可预览，复制也行</h2> <p>

@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><script>
+      document.documentElement.classList.add("js");
+    </script><script>
+      (function () {
+        // 用户手动切换过语言，则不自动跳转
+        try {
+          if (localStorage.getItem("lang-pref")) return;
+        } catch (e) {}
+
+        // 按浏览器主语言跳转：中文 → zh，其余一律兜底英文
+        var primary = navigator.language || (navigator.languages && navigator.languages[0]) || "en";
+        var isZh = String(primary).toLowerCase().slice(0, 2) === "zh";
+        var target = isZh ? "zh" : "en";
+
+        // 当前页面语言
+        var path = location.pathname;
+        var norm = path.length > 1 ? path.replace(/\/+$/, "") : path;
+        var cur = norm === "/en" || norm.indexOf("/en/") === 0 ? "en" : "zh";
+        if (cur === target) return;
+
+        // 已知页面路径映射，缺省回对应语言首页
+        var map = {
+          "/": "/en/",
+          "/download": "/en/download",
+          "/features": "/en/features",
+          "/features/export-formats": "/en/features/export-formats",
+          "/features/pseudo-table": "/en/features/pseudo-table",
+          "/features/batch-pagination": "/en/features/batch-pagination",
+          "/features/merged-cells": "/en/features/merged-cells",
+          "/features/offline-privacy": "/en/features/offline-privacy",
+          "/help/faq": "/en/faq",
+          "/help/changelog": "/en/changelog",
+          "/pricing": "/en/pricing",
+          "/payment-success": "/en/payment-success",
+          "/privacy": "/en/privacy",
+          "/refund": "/en/refund",
+          "/en": "/",
+          "/en/download": "/download",
+          "/en/features": "/features",
+          "/en/features/export-formats": "/features/export-formats",
+          "/en/features/pseudo-table": "/features/pseudo-table",
+          "/en/features/batch-pagination": "/features/batch-pagination",
+          "/en/features/merged-cells": "/features/merged-cells",
+          "/en/features/offline-privacy": "/features/offline-privacy",
+          "/en/faq": "/help/faq",
+          "/en/changelog": "/help/changelog",
+          "/en/pricing": "/pricing",
+          "/en/payment-success": "/payment-success",
+          "/en/privacy": "/privacy",
+          "/en/refund": "/refund",
+        };
+        var dest = map[norm] || (target === "en" ? "/en/" : "/");
+        if (dest !== norm) location.replace(dest);
+      })();
+      // 记录用户手动切换语言，避免之后再次被自动跳转拉回
+      document.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("a.lang") : null;
+        if (a) {
+          try { localStorage.setItem("lang-pref", "1"); } catch (err) {}
+        }
+      });
+    </script><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/png" href="/images/icon-128.png"><title>Export Web Tables to Excel / CSV / Markdown / JSON - One Click | Table Export</title><meta name="description" content="Export any web page table to CSV (UTF-8 with BOM, no garbled text in Excel/WPS), Excel .xlsx, Markdown, or JSON — plus cross-table merge. Table Export, 100% offline."><link rel="canonical" href="https://tableexport.github.io/en/features/export-formats/"><link rel="alternate" hreflang="zh-CN" href="https://tableexport.github.io/features/export-formats/"><link rel="alternate" hreflang="en" href="https://tableexport.github.io/en/features/export-formats/"><link rel="alternate" hreflang="x-default" href="https://tableexport.github.io/features/export-formats/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><meta property="og:type" content="website"><meta property="og:site_name" content="Table Export 表格导出助手"><meta property="og:title" content="Export Web Tables to Excel / CSV / Markdown / JSON - One Click | Table Export"><meta property="og:description" content="Export any web page table to CSV (UTF-8 with BOM, no garbled text in Excel/WPS), Excel .xlsx, Markdown, or JSON — plus cross-table merge. Table Export, 100% offline."><meta property="og:url" content="https://tableexport.github.io/en/features/export-formats/"><meta property="og:image" content="https://tableexport.github.io/images/screenshot-1-batch-export-en.png"><meta name="twitter:card" content="summary_large_image"><script defer src="https://cloud.umami.is/script.js" data-website-id="197defb8-296a-44d5-b7a4-89f6dcfeebff" data-auto-track="true" data-domains="tableexport.github.io"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"/en/"},{"@type":"ListItem","position":2,"name":"Multiple formats","item":"/en/features/export-formats/"}]}</script><link rel="stylesheet" href="/_astro/download.D5RvpE7m.css"></head> <body> <header class="site-nav"> <div class="container"> <a class="brand" href="/en/"> <img class="logo" src="/images/icon-128.png" alt="" width="26" height="26">
+Table&nbsp;<span class="mark">Export</span> </a> <nav class="links"> <a href="/en/features/">Features</a> <a href="/en/download/">Download</a> <a href="/en/faq/">FAQ</a> <a class="lang" href="/features/export-formats/">中文</a> <a class="nav-cta" href="/en/pricing/"> Go Pro · $9.99 </a> </nav> </div> </header> <main>  <div class="prose"> <nav class="breadcrumb"><a href="/en/">Home</a> / Multiple formats</nav> <span class="page-badge">Core feature · Feature</span> <h1>Export web tables to Excel / CSV / Markdown / JSON in one click</h1> <p class="lead">Turn a selected table or list block into a clean two-dimensional data file — no copy-paste, no scripts.</p> <h2>Four formats for common cases</h2> <ul> <li><strong>CSV</strong>: UTF-8 with BOM, opens without garbled text in Excel or WPS, ready for databases and data cleaning.</li> <li><strong>Excel (.xlsx)</strong>: a real Excel file generated with SheetJS, structure preserved, ready for reports.</li> <li><strong>Markdown</strong>: paste straight into docs and notes when gathering references — no re-formatting.</li> <li><strong>JSON</strong>: structured data handed directly to your code.</li> </ul> <h2>Cross-table merge (Pro): combine tables into one</h2> <p>
+Multiple scattered tables on the same page can be merged vertically or aligned horizontally into a single export — split-rendered reports and master-plus-detail tables no longer need manual assembly. This is a Pro feature: <a href="/en/pricing/">upgrade</a> and enable merge mode in the popup.
+</p> <img src="/images/screenshot-3-floating-toolbar-en.png" alt="In-page floating export toolbar for choosing an export format" width="1280" height="800" style="border-radius:12px;border:1px solid #eee"> <h2>Preview before export, or just copy</h2> <p>
+Besides downloading, you can copy the table straight to the clipboard — as text (tab-separated, pastes into Excel with auto columns), CSV, or JSON. The preview grid supports pinning so you can confirm the data before exporting and never grab the wrong table.
+</p> <h2>Toolbar buttons, customized to your habit</h2> <p>
+The in-page floating export toolbar can be toggled as a whole or per button — keep only the Excel and CSV buttons you use. Settings sync in real time, and every format button is free.
+</p> <h2>Related pages</h2> <p> <a href="/en/features/merged-cells/">How are merged cells handled?</a> ·
+<a href="/en/features/batch-pagination/">How to batch-collect paged data?</a> ·
+<a href="/en/pricing/">Free vs Pro</a> ·
+<a href="/en/download/">Download</a> </p> </div>  </main> <footer class="site-footer"> <div class="container"> <div class="footer-top"> <a class="brand" href="/en/"> <img class="logo" src="/images/icon-128.png" alt="" width="26" height="26">
+Table&nbsp;<span class="mark">Export</span> </a> <p class="tagline"> Detect and export web tables in one click. Fully offline, zero data collected. </p> </div> <div class="cols"> <div> <h4>Features</h4> <ul> <li><a href="/en/features/export-formats/">Export CSV / Excel / JSON</a></li> <li><a href="/en/features/pseudo-table/">Pseudo-table detection</a></li> <li><a href="/en/features/batch-pagination/">Batch paged collection</a></li> <li><a href="/en/features/merged-cells/">Merged cells flattening</a></li> <li><a href="/en/features/offline-privacy/">Offline &amp; private</a></li> </ul> </div> <div> <h4>Product</h4> <ul> <li><a href="/en/pricing/">Pricing &amp; Buy</a></li> <li><a href="/en/download/">Download</a></li> <li><a href="/en/changelog/">Changelog</a></li> </ul> </div> <div> <h4>Support</h4> <ul> <li><a href="/en/faq/">FAQ</a></li> <li><a href="/en/refund/">Refund Policy</a></li> <li><a href="/en/privacy/">Privacy Policy</a></li> <li><a href="mailto:lslwork666@163.com">Contact</a></li> </ul> </div> </div> <div class="copy"> <span>© 2026 Table Export · Table Export Helper</span> <a href="mailto:lslwork666@163.com">lslwork666@163.com</a> </div> </div> </footer> <script type="module">const s=Array.from(document.querySelectorAll("[data-reveal]"));if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)s.forEach(r=>r.classList.add("in-view"));else{const r=new Map;s.forEach(t=>{const e=t.parentElement??document.body;r.has(e)||r.set(e,[]),r.get(e).push(t)}),r.forEach(t=>t.forEach((e,a)=>{e.style.transitionDelay=`${Math.min(a*70,350)}ms`}));const o=new IntersectionObserver(t=>{for(const e of t)e.isIntersecting&&(e.target.classList.add("in-view"),o.unobserve(e.target))},{threshold:.12});s.forEach(t=>o.observe(t))}</script> </body> </html>
